@@ -30,7 +30,7 @@ The expected output of each input file is in the top of each input file as a com
 Program details:
 ----------------
 
-Reading file
+Reading file:
 
 The token, position, scanner, and instreamreader files are used to read the input file.
 
@@ -44,7 +44,7 @@ The token, position, scanner, and instreamreader files are used to read the inpu
 
 ..........................................................................
 
-Parsing and building AST
+Parsing and building AST:
 
 The blockparser and bitvector files are used to parse the input and attempt to build an abstract syntax tree based on the input.  The blockparser file defines the allowed syntax blocks in the p-language (see Language_Description.txt.)
 
@@ -52,7 +52,7 @@ The SymbolTable file defines the allowed variable types (bool, int, or num) and 
 
 .........................................................................
 
-Running
+Running:
 
 buildASTinterpret.c contains the "main" method, which:
 
