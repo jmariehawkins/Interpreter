@@ -1,0 +1,91 @@
+           A concise description of the p-language (provided in class)
+           ==========================================================
+
+Syntax:
+------
+
+Program              =  Block
+
+Block                =  "begin"
+                           { Declaration }
+                           StatementsOrBlocks
+                        "end"
+
+Declaration          =  "var" Identifier ":" Type ";"
+
+Type                 =  "bool" | "int"
+
+StatementsOrBlocks   =  StatementOrBlock { ";" StatementOrBlock }
+
+StatementOrBlock     =  Statement | Block
+
+Statement            =  EmptyStatement
+                      | AssignmentStatement
+                      | PrintStatement
+                      | ConditionalStatement
+                      | IterativeStatement
+
+EmptyStatement       =  "skip"
+
+AssignmentStatement  =  Identifier ":=" BooleanExpression
+
+PrintStatement       =  "print" BooleanExpression
+
+ConditionalStatement =  "if" BooleanExpression "then"
+                             StatementsOrBlocks
+                        "else"
+                             StatementsOrBlocks
+                        "fi"
+
+IterativeStatement   =  "while" BooleanExpression "do"
+                             StatementsOrBlocks
+                        "od"
+
+BooleanExpression    =  BooleanTerm { "or" BooleanTerm }
+
+BooleanTerm          =  BooleanFactor { "and" BooleanFactor" }
+
+BooleanFactor        =  [ "not" ] ( "false"
+                                  | "true"
+                                  | RelationalExpression
+                                  )
+
+RelationalExpression =  IntegerExpression [ RelationalOperator IntegerExpression ]
+
+RelationalOperator   =  "<" | "=<" | "=" | "!=" | ">=" | ">"
+
+IntegerExpression    =  Term { ("+" | "-" ) Term }
+
+Term                 =  Factor { ( "*" | "div" | "mod" ) Factor }
+
+Factor               =  [ "-" ] (  Identifier
+                                |  UnsignedInteger
+                                |  "(" IntegerExpression ")"
+                                )
+
+Identifier           =  Letter { Letter | Digit }
+
+..............................................................
+
+UnsignedInteger  =  Digit  { Digit } .
+
+Digit  =  "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" .
+
+Letter  = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k"
+        | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v"
+        | "w" | "x" | "y" | "z"
+        | "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K"
+        | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V"
+        | "W" | "X" | "Y" | "Z" .
+
+Keywords:  and   begin  bool   div    do     if
+           else  end    false  fi     int    mod
+           not   od     or     print  skip   then
+           true  var    while
+
+A comment begins with "//" and extends to the end of the line.
+
+Note that all variable declarations must be at the beginning of the program, after the word "begin".
+Each statement must have a semi-colon after it, except the last statement in the program before "end", although variable declarations must always be followed by a semi-colon.
+
+===============================================================================
